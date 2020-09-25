@@ -165,6 +165,9 @@ namespace intp
 		return (x1 > gridIn.x0);
 	}
 
+	//TODO Add Logic so when comparing, the sets do NOT intersect on domain () (i.e. not [])
+	//TODO Add in comparision logic for the map.
+
 	template<class dType>
 	dType DimOneGrid<dType>::distance() const
 	{
