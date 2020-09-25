@@ -2,6 +2,7 @@
 
 namespace intp
 {
+	template<class dType>
 	class GridIF
 	{
 	private:
@@ -21,8 +22,6 @@ namespace intp
 		virtual ~GridIF() = default;
 
 		//Base Virtual Grid Size 
-		virtual double size() const = 0;
-
-		//Base Virtual Grid Check ... check to make sure the grids "Link up"
+		virtual dType distance() const = 0;
 	};
 }

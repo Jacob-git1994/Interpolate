@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DimOneGrid.cpp" />
+    <ClCompile Include="DimOneRange.cpp" />
     <ClCompile Include="Interpolate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DimOneGrid.h" />
+    <ClInclude Include="DimOneRange.h" />
     <ClInclude Include="GridIF.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

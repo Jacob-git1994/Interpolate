@@ -30,12 +30,18 @@
     <ClCompile Include="DimOneGrid.cpp">
       <Filter>Grid\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DimOneRange.cpp">
+      <Filter>Grid\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GridIF.h">
       <Filter>Grid\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DimOneGrid.h">
+      <Filter>Grid\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DimOneRange.h">
       <Filter>Grid\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

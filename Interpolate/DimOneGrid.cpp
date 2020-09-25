@@ -2,7 +2,8 @@
 
 using namespace intp;
 
-void DimOneGrid::validInputs() const
+template<class dType>
+void DimOneGrid<dType>::validInputs() const
 {
 	//Verify the values are ordered corrected and are not equivlent. 
 	const bool check = (x0 > x1) || (fabs(x0 - x1) < numeric_limits<double>::epsilon());
@@ -14,37 +15,41 @@ void DimOneGrid::validInputs() const
 	return;
 }
 
-DimOneGrid::DimOneGrid() :
-	x0(0.),
-	x1(1.),
-	GridIF()
+template<class dType>
+DimOneGrid<dType>::DimOneGrid() :
+	x0(static_cast<dType>(0.)),
+	x1(static_cast<dType>(1.)),
+	GridIF<dType>()
 {
 	//Check if Inputs are valid
 	validInputs();
 }
 
-DimOneGrid::DimOneGrid(
-	double x0In,
-	double x1In) :
+template<class dType>
+DimOneGrid<dType>::DimOneGrid(
+	const dType& x0In,
+	const dType& x1In) :
 	x0(x0In),
 	x1(x1In),
-	GridIF()
+	GridIF<dType>()
 {
 	//Check if inputs are valid
 	validInputs();
 }
 
-DimOneGrid::DimOneGrid(
-	const DimOneGrid& gridIn) :
+template<class dType>
+DimOneGrid<dType>::DimOneGrid(
+	const DimOneGrid<dType>& gridIn) :
 	x0(gridIn.x0),
 	x1(gridIn.x1),
-	GridIF()
+	GridIF<dType>()
 {
 	//Check if Inputs are Valid
 	validInputs();
 }
 
-const DimOneGrid& DimOneGrid::operator=(
+template<class dType>
+const DimOneGrid<dType>& DimOneGrid<dType>::operator=(
 	const DimOneGrid& gridIn)
 {
 	//Copy the grid values based on input grid
@@ -57,9 +62,10 @@ const DimOneGrid& DimOneGrid::operator=(
 	return *this;
 }
 
-const DimOneGrid& DimOneGrid::initalize(
-	double x0In, 
-	double x1In)
+template<class dType>
+const DimOneGrid<dType>& DimOneGrid<dType>::initalize(
+	const dType& x0In, 
+	const dType& x1In)
 {
 	//Copy values to form new grid
 	x0 = x0In;
@@ -71,31 +77,36 @@ const DimOneGrid& DimOneGrid::initalize(
 	return *this;
 }
 
-bool DimOneGrid::operator<=(
-	const DimOneGrid& gridIn) const
+template<class dType>
+bool DimOneGrid<dType>::operator<=(
+	const DimOneGrid<dType>& gridIn) const
 {
-	return (x1 < gridIn.x0) || (fabs(x1 - gridIn.x0) < numeric_limits<double>::epsilon());
+	return (x1 < gridIn.x0) || (fabs(x1 - gridIn.x0) < numeric_limits<dType>::epsilon());
 }
 
-bool DimOneGrid::operator>=(
-	const DimOneGrid& gridIn) const
+template<class dType>
+bool DimOneGrid<dType>::operator>=(
+	const DimOneGrid<dType>& gridIn) const
 {
-	return (x1 > gridIn.x0) || (fabs(x1 - gridIn.x0) < numeric_limits<double>::epsilon());
+	return (x1 > gridIn.x0) || (fabs(x1 - gridIn.x0) < numeric_limits<dType>::epsilon());
 }
 
-bool DimOneGrid::operator<(
-	const DimOneGrid& gridIn) const
+template<class dType>
+bool DimOneGrid<dType>::operator<(
+	const DimOneGrid<dType>& gridIn) const
 {
 	return (x1 < gridIn.x0);
 }
 
-bool DimOneGrid::operator>(
-	const DimOneGrid& gridIn) const
+template<class dType>
+bool DimOneGrid<dType>::operator>(
+	const DimOneGrid<dType>& gridIn) const
 {
 	return (x1 > gridIn.x0);
 }
 
-double DimOneGrid::size() const
+template<class dType>
+dType DimOneGrid<dType>::distance() const
 {
-	return x1 - x0;
+	return static_cast<dType>(x1 - x0);
 }

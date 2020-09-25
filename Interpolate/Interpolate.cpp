@@ -8,19 +8,10 @@ using namespace intp;
 
 int main()
 {
-    GridIF* grid = nullptr;
-    try 
-    {
-        grid = new DimOneGrid(10, 9);
-    }
-    catch (std::exception e)
-    {
-        std::cerr << e.what() << "\n";
-        exit(-1);
-    }
+	DimOneGrid<double> g;
 
-    if(grid != nullptr)
-        std::cout << grid->size() << "\n";
-    else{}
+	g.initalize(5, 10);
+
+	std::cout << g.distance() << "\n";
 }
 

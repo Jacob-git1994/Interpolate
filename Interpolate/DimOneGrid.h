@@ -12,15 +12,16 @@ using std::fabs;
 
 namespace intp
 {
-	class DimOneGrid : public GridIF
+	template<class dType>
+	class DimOneGrid : public GridIF<dType>
 	{
 	private:
 
 		//Begining Grid Point for a 1D Grid
-		double x0;
+		dType x0;
 
 		//End Grid Point for a 1D Grid
-		double x1;
+		dType x1;
 
 		//Check if inputs are valid
 		virtual void validInputs() const override;
@@ -31,34 +32,34 @@ namespace intp
 		DimOneGrid();
 
 		//Constructor the Grid
-		DimOneGrid(double, double);
+		DimOneGrid(const dType&, const dType&);
 
 		//Copy Constructor
-		DimOneGrid(const DimOneGrid&);
+		DimOneGrid(const DimOneGrid<dType>&);
 
 		//Grid Assign Constructor
-		const DimOneGrid& operator=(const DimOneGrid&);
+		const DimOneGrid<dType>& operator=(const DimOneGrid<dType>&);
 
 		//Virtual Default Destructor
 		virtual ~DimOneGrid() = default;
 
 		//Initalize the Grid
-		const DimOneGrid& initalize(double, double);
+		const DimOneGrid& initalize(const dType&, const dType&);
 
 		//Impliment Operator <=
-		bool operator<=(const DimOneGrid&) const;
+		bool operator<=(const DimOneGrid<dType>&) const;
 
 		//Impliment Operator >=
-		bool operator>=(const DimOneGrid&) const;
+		bool operator>=(const DimOneGrid<dType>&) const;
 
 		//Impliment Operator <
-		bool operator<(const DimOneGrid&) const;
+		bool operator<(const DimOneGrid<dType>&) const;
 
 		//Impliment Operator >
-		bool operator>(const DimOneGrid&) const;
+		bool operator>(const DimOneGrid<dType>&) const;
 
 		//Impliment Size Method from Base Class
-		virtual double size() const override;
+		virtual dType distance() const override;
 	};
 
 }
