@@ -139,8 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DimOneGrid.cpp" />
-    <ClCompile Include="DimOneRange.cpp" />
     <ClCompile Include="Interpolate.cpp" />
   </ItemGroup>
   <ItemGroup>

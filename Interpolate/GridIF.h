@@ -5,23 +5,18 @@ namespace intp
 	template<class dType>
 	class GridIF
 	{
-	private:
-
-		//Virtual Base Check for valid inputs
-		virtual void validInputs() const = 0;
-
 	public:
 
 		//Base Constructor
-		GridIF() = default;
+		inline GridIF() = default;
 
 		//Base Copy Constructor
-		GridIF(const GridIF&) = default;
+		inline GridIF(const GridIF&) = default;
 
 		//Base Virtual Destructor
-		virtual ~GridIF() = default;
+		inline virtual ~GridIF() = default;
 
 		//Base Virtual Grid Size 
-		virtual dType distance() const = 0;
+		inline virtual dType distance() const = 0;
 	};
 }

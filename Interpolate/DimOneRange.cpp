@@ -3,12 +3,21 @@
 using namespace intp;
 
 template<class dType>
+DimOneRange<dType>::DimOneRange() :
+	yVal0(static_cast<dType>(0.)),
+	yVal1(static_cast<dType>(1.)),
+	GridIF<dType>()
+{
+	//Nothing to do here
+}
+
+template<class dType>
 DimOneRange<dType>::DimOneRange(
 	const dType& y0In,
 	const dType& y1In) :
 	yVal0(y0In),
 	yVal1(y1In),
-	GridIF()
+	GridIF<dType>()
 {
 	//Nothing to do here
 }
@@ -21,6 +30,17 @@ DimOneRange<dType>::DimOneRange(
 	GridIF<dType>()
 {
 	//Do nothing here
+}
+
+template<class dType>
+const DimOneRange<dType>& DimOneRange<dType>::operator=(
+	const DimOneRange<dType>& dimOneRangeIn)
+{
+	//Copy Over Values
+	yVal0 = dimOneRangeIn.yVal0;
+	yVal1 = dimOneRangeIn.yVal1;
+
+	return *this;
 }
 
 //For Other Types avoid contrcuting class

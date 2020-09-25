@@ -27,12 +27,6 @@
     <ClCompile Include="Interpolate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DimOneGrid.cpp">
-      <Filter>Grid\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DimOneRange.cpp">
-      <Filter>Grid\Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GridIF.h">

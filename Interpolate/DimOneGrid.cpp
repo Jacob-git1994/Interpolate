@@ -6,7 +6,7 @@ template<class dType>
 void DimOneGrid<dType>::validInputs() const
 {
 	//Verify the values are ordered corrected and are not equivlent. 
-	const bool check = (x0 > x1) || (fabs(x0 - x1) < numeric_limits<double>::epsilon());
+	const bool check = (x0 > x1) || (fabs(x0 - x1) < numeric_limits<dType>::epsilon());
 	if (check)
 	{
 		throw invalid_argument("Grid Not Implimented Correctly");
@@ -14,6 +14,7 @@ void DimOneGrid<dType>::validInputs() const
 	}
 	return;
 }
+
 
 template<class dType>
 DimOneGrid<dType>::DimOneGrid() :
@@ -50,7 +51,7 @@ DimOneGrid<dType>::DimOneGrid(
 
 template<class dType>
 const DimOneGrid<dType>& DimOneGrid<dType>::operator=(
-	const DimOneGrid& gridIn)
+	const DimOneGrid<dType>& gridIn)
 {
 	//Copy the grid values based on input grid
 	x0 = gridIn.x0;
