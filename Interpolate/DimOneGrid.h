@@ -7,6 +7,7 @@
 #include "GridIF.h"
 
 using std::invalid_argument;
+using std::runtime_error;
 using std::numeric_limits;
 using std::fabs;
 
@@ -46,20 +47,27 @@ namespace intp
 		//Initalize the Grid
 		inline const DimOneGrid& initalize(const dType&, const dType&);
 
-		//Impliment Operator <=
-		inline bool operator<=(const DimOneGrid<dType>&) const;
-
-		//Impliment Operator >=
-		inline bool operator>=(const DimOneGrid<dType>&) const;
-
-		//Impliment Operator <
-		inline bool operator<(const DimOneGrid<dType>&) const;
-
-		//Impliment Operator >
-		inline bool operator>(const DimOneGrid<dType>&) const;
-
 		//Impliment Size Method from Base Class
 		inline virtual dType distance() const override;
+
+		//Check if pair of Grids are Intersecting
+		virtual inline bool isIntersecting(const DimOneGrid<dType>&) const;
+
+		//Get the left grid point
+		inline const dType& left() const;
+
+		//Get the right grid point
+		inline const dType& right() const;
+
+		//Comparison Class
+		class GridCompare
+		{
+		public:
+
+			//Compare operator
+			inline bool operator()(const DimOneGrid<dType>&, const DimOneGrid<dType>&) const;
+		};
+
 	};
 
 	template<class dType>
@@ -138,39 +146,42 @@ namespace intp
 	}
 
 	template<class dType>
-	bool DimOneGrid<dType>::operator<=(
-		const DimOneGrid<dType>& gridIn) const
-	{
-		return (x1 < gridIn.x0) || (fabs(x1 - gridIn.x0) < numeric_limits<dType>::epsilon());
-	}
-
-	template<class dType>
-	bool DimOneGrid<dType>::operator>=(
-		const DimOneGrid<dType>& gridIn) const
-	{
-		return (x1 > gridIn.x0) || (fabs(x1 - gridIn.x0) < numeric_limits<dType>::epsilon());
-	}
-
-	template<class dType>
-	bool DimOneGrid<dType>::operator<(
-		const DimOneGrid<dType>& gridIn) const
-	{
-		return (x1 < gridIn.x0);
-	}
-
-	template<class dType>
-	bool DimOneGrid<dType>::operator>(
-		const DimOneGrid<dType>& gridIn) const
-	{
-		return (x1 > gridIn.x0);
-	}
-
-	//TODO Add Logic so when comparing, the sets do NOT intersect on domain () (i.e. not [])
-	//TODO Add in comparision logic for the map.
-
-	template<class dType>
 	dType DimOneGrid<dType>::distance() const
 	{
 		return static_cast<dType>(x1 - x0);
+	}
+
+	template<class dType>
+	bool DimOneGrid<dType>::isIntersecting(const DimOneGrid<dType>& gridIn) const
+	{
+		return ((gridIn.x0 < x1) && (gridIn.x0 > x0)) ||
+			((gridIn.x1 < x1) && (gridIn.x1 > x0)) ||
+			((x0 < gridIn.x1) && (x0 > gridIn.x0)) ||
+			((x1 < gridIn.x1) && (x1 > gridIn.x0));
+	}
+
+	template<class dType>
+	const dType& DimOneGrid<dType>::left() const
+	{
+		return x0;
+	}
+
+	template<class dType>
+	const dType& DimOneGrid<dType>::right() const
+	{
+		return x1;
+	}
+
+	template<class dType>
+	bool DimOneGrid<dType>::GridCompare::operator()(const DimOneGrid<dType>& lhs, const DimOneGrid<dType>& rhs) const
+	{
+		if (!lhs.isIntersecting(rhs))
+		{
+			return lhs.left() < rhs.left();
+		}
+		else
+		{
+			throw runtime_error("Non-Unique Comparison");
+		}
 	}
 }
