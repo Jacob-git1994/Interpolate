@@ -65,7 +65,7 @@ namespace intp
 		public:
 
 			//Compare operator
-			inline bool operator()(const DimOneGrid<dType>&, const DimOneGrid<dType>&) const;
+			virtual inline bool operator()(const DimOneGrid<dType>&, const DimOneGrid<dType>&) const;
 		};
 
 	};
