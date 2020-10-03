@@ -42,6 +42,12 @@ namespace intp
 
 		//Distance Method for other situations
 		inline virtual dType distance() const override;
+
+		//Get Left Value
+		inline const dType& left() const;
+
+		//Get Right Value
+		inline const dType& right() const;
 	};
 
 	template<class dType>
@@ -105,4 +111,15 @@ namespace intp
 		return yVal1 - yVal0;
 	}
 
+	template<class dType>
+	const dType& DimOneRange<dType>::left() const
+	{
+		return y0;
+	}
+
+	template<class dType>
+	const dType& DimOneRange<dType>::right() const
+	{
+		return y1;
+	}
 }

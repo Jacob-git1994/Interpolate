@@ -22,10 +22,22 @@
     <Filter Include="Grid\Header Files">
       <UniqueIdentifier>{28a90b9c-a001-4756-ba51-730ee70c9dcc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Line">
+      <UniqueIdentifier>{f64e8a7f-57e1-49c9-acaf-d44340cda289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Line\Header Files">
+      <UniqueIdentifier>{04903dfb-0742-45f1-81da-e9ff4c8419e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Line\Source Files">
+      <UniqueIdentifier>{2557f853-b25c-4a68-af95-42e9594cf6ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Interpolate.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OneDimLine.cpp">
+      <Filter>Line\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="DimOneRange.h">
       <Filter>Grid\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineIF.h">
+      <Filter>Line\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OneDimLine.h">
+      <Filter>Line\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

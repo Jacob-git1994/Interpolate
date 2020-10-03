@@ -59,6 +59,9 @@ namespace intp
 		//Get the right grid point
 		inline const dType& right() const;
 
+		//Find if point is between the two other points
+		inline bool isBetween(const dType&) const;
+
 		//Comparison Class
 		class GridCompare
 		{
@@ -170,6 +173,13 @@ namespace intp
 	const dType& DimOneGrid<dType>::right() const
 	{
 		return x1;
+	}
+
+	template<class dType>
+	bool DimOneGrid<dType>::isBetween(const dType& valIn) const
+	{
+		return (fabs(x0 - valIn) < numeric_limits<dType>::epsilon() || x0 < valIn) &&
+			(fabs(x1 - valIn) < numeric_limits<dType>::epsilon() || x1 > valIn);
 	}
 
 	template<class dType>

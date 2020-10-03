@@ -49,11 +49,13 @@ int main()
 	grids2.emplace(DimOneGrid<double>(10, 20),10);
 	grids2.emplace(DimOneGrid<double>(40, 80), 10);
 	grids2.emplace(DimOneGrid<double>(80, 100), 10);
-	grids2.emplace(DimOneGrid<double>(100, 2000), 10);
+	grids2.emplace(DimOneGrid<double>(0, 10), 10);
 
 	for (auto& el : grids2)
 	{
-		std::cout << el.first.left() << "\t" << el.first.right() << "\n";
+		std::cout << el.first.left() << "\t" << el.first.right() << "\t" << el.first.isBetween(10.)  << "\n";
 	}
+
+
 }
 

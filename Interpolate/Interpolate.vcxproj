@@ -140,11 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Interpolate.cpp" />
+    <ClCompile Include="OneDimLine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DimOneGrid.h" />
     <ClInclude Include="DimOneRange.h" />
     <ClInclude Include="GridIF.h" />
+    <ClInclude Include="LineIF.h" />
+    <ClInclude Include="OneDimLine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
