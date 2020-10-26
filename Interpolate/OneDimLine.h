@@ -43,7 +43,7 @@ namespace intp
         void addGridPair(const DimOneGrid<double>&, const DimOneRange<double>&);
 
         //Get the Grid and Value Pair that can be interpolated
-        const auto& getPair(const double&) const;
+        void getPair(const double&, DimOneGrid<double>&, DimOneRange<double>&, bool) const;
 
     };
 }

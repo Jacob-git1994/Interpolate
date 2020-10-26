@@ -4,7 +4,7 @@ using namespace intp;
 
 bool OneDimLine::isUnique(const DimOneGrid<double>& gridIn) const
 {
-	bool uniqueFlag = false;
+	bool uniqueFlag = true;
 
 	for (auto& grid : line)
 	{
@@ -25,7 +25,9 @@ bool OneDimLine::isUnique(const DimOneGrid<double>& gridIn) const
 	return uniqueFlag;
 }
 
-void OneDimLine::addGridPair(const DimOneGrid<double>& gridIn, const DimOneRange<double>& valIn)
+void OneDimLine::addGridPair(
+	const DimOneGrid<double>& gridIn, 
+	const DimOneRange<double>& valIn)
 {
 	if (isUnique(gridIn))
 	{
@@ -39,15 +41,26 @@ void OneDimLine::addGridPair(const DimOneGrid<double>& gridIn, const DimOneRange
 	return;
 }
 
-const auto& OneDimLine::getPair(const double& valIn) const
+void OneDimLine::getPair(
+	const double& valIn, 
+	DimOneGrid<double>& domainIn, 
+	DimOneRange<double>& rangeIn,
+	bool left = true) const
 {
 	if (!line.empty())
 	{
-		for (auto& grid : line)
+		for (const auto& grid : line)
 		{
-			if (grid.first.isBetween(valIn))
+			if (grid.first.isBetween(valIn) && left)
 			{
-				return grid;
+				//Save the values of the grid
+				domainIn = grid.first;
+				rangeIn = grid.second;
+			}
+			else if (grid.first.isBetween(valIn) && !left)
+			{
+				left = true;
+				continue;
 			}
 			else
 			{
@@ -58,11 +71,15 @@ const auto& OneDimLine::getPair(const double& valIn) const
 		//If we get here we never found a point so we will need to pick left or right side of the line
 		if (valIn < line.begin()->first.left())
 		{
-			return *line.begin();
+			//Save the begining values
+			domainIn = line.begin()->first;
+			rangeIn = line.begin()->second;
 		}
 		else if (valIn > line.end()->first.right())
 		{
-			return *line.end();
+			//Save the End Values
+			domainIn = line.end()->first;
+			rangeIn = line.end()->second;
 		}
 		else
 		{

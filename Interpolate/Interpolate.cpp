@@ -1,6 +1,7 @@
 #include "DimOneGrid.h"
 #include "DimOneRange.h"
 #include "GridIF.h"
+#include "OneDimLine.h"
 
 
 using namespace intp;
@@ -14,6 +15,7 @@ using std::map;
 
 int main()
 {
+	/*
 	list<DimOneGrid<double>> grids;
 
 	for (int i = 0; i < 10; ++i)
@@ -56,6 +58,23 @@ int main()
 		std::cout << el.first.left() << "\t" << el.first.right() << "\t" << el.first.isBetween(10.)  << "\n";
 	}
 
+	*/
 
+	OneDimLine inter;
+	DimOneGrid<double> gridVal;
+	DimOneRange<double> rangeVal;
+
+	for (int i = 0; i < 100; ++i)
+	{
+		inter.addGridPair(DimOneGrid<double>(static_cast<double>(i), static_cast<double>(i+1)), DimOneRange<double>(static_cast<double>(i), static_cast<double>(i*i)));
+	}
+
+
+#if 1
+	inter.getPair(67, gridVal, rangeVal,true);
+
+	std::cout << gridVal.left() << "\t" << gridVal.right() << "\n" \
+		<< rangeVal.left() << "\t" << rangeVal.right() << "\n";
+#endif
 }
 
