@@ -66,18 +66,13 @@ int main()
 
 	for (int i = 0; i < 10; ++i)
 	{
-		inter.addGridPair(DimOneGrid<double>(static_cast<double>(i), static_cast<double>(i+1)), DimOneRange<double>(static_cast<double>(i), static_cast<double>(i*i)));
+		double x = static_cast<double>(i);
+		inter.addGridPair(DimOneGrid<double>(x, x + 1.), DimOneRange<double>(x, (x + 1.) * (x + 1.)));
 	}
 
-	inter.getPair(5, gridVal, rangeVal, true);
+	inter.getPair(-10, gridVal, rangeVal, true);
 
-	std::cout << rangeVal.left() << "\n" << rangeVal.right();
-
-#if 0
-	inter.getPair(5, gridVal, rangeVal,true);
-
-	std::cout << gridVal.left() << "\t" << gridVal.right() << "\n" \
-		<< rangeVal.left() << "\t" << rangeVal.right() << "\n";
-#endif
+	std::cout << gridVal.left() << "\n" << gridVal.right() << "\n";
+	std::cout << rangeVal.left() << "\n" << rangeVal.right() << "\n";
 }
 

@@ -40,13 +40,13 @@ namespace intp
         virtual ~OneDimLine() = default;
 
         //Add set of grids and values to the map
-        void addGridPair(const DimOneGrid<double>&, const DimOneRange<double>&);
+        virtual void addGridPair(const DimOneGrid<double>&, const DimOneRange<double>&) override;
 
         //Get the Grid and Value Pair that can be interpolated
-        const bool getPair(const double&, DimOneGrid<double>&, DimOneRange<double>&, bool) const;
+        virtual const bool getPair(const double&, DimOneGrid<double>&, DimOneRange<double>&, bool) const override;
 
         //Get the map to analysis
-        const map<DimOneGrid<double>, DimOneRange<double>, DimOneGrid<double>::GridCompare>& getLinearMap() const;
+        virtual const map<DimOneGrid<double>, DimOneRange<double>, DimOneGrid<double>::GridCompare>& getLinearMap() const override;
 
     };
 }

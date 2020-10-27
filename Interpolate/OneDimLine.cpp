@@ -6,7 +6,7 @@ bool OneDimLine::isUnique(const DimOneGrid<double>& gridIn) const
 {
 	bool uniqueFlag = true;
 
-	for (auto& grid : line)
+	for (const auto& grid : line)
 	{
 		if (!grid.first.isIntersecting(gridIn))
 		{
@@ -83,8 +83,8 @@ const bool OneDimLine::getPair(
 		else if (valIn > line.rbegin()->first.right())
 		{
 			//Save the End Values
-			domainIn = line.end()->first;
-			rangeIn = line.end()->second;
+			domainIn = line.rbegin()->first;
+			rangeIn = line.rbegin()->second;
 		}
 		else if(!found)
 		{
