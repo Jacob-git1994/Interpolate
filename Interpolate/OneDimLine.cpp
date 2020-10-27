@@ -41,12 +41,15 @@ void OneDimLine::addGridPair(
 	return;
 }
 
-void OneDimLine::getPair(
+const bool OneDimLine::getPair(
 	const double& valIn, 
 	DimOneGrid<double>& domainIn, 
 	DimOneRange<double>& rangeIn,
 	bool left = true) const
 {
+	//Initalize Found Boolean
+	bool found = false;
+
 	if (!line.empty())
 	{
 		for (const auto& grid : line)
@@ -56,6 +59,8 @@ void OneDimLine::getPair(
 				//Save the values of the grid
 				domainIn = grid.first;
 				rangeIn = grid.second;
+				found = true;
+				break;
 			}
 			else if (grid.first.isBetween(valIn) && !left)
 			{
@@ -75,13 +80,13 @@ void OneDimLine::getPair(
 			domainIn = line.begin()->first;
 			rangeIn = line.begin()->second;
 		}
-		else if (valIn > line.end()->first.right())
+		else if (valIn > line.rbegin()->first.right())
 		{
 			//Save the End Values
 			domainIn = line.end()->first;
 			rangeIn = line.end()->second;
 		}
-		else
+		else if(!found)
 		{
 			throw runtime_error("Unable to find point in scope of line");
 		}
@@ -91,4 +96,10 @@ void OneDimLine::getPair(
 	{
 		throw runtime_error("No elements in Line Class");
 	}
+	return found;
+}
+
+const map<DimOneGrid<double>, DimOneRange<double>, DimOneGrid<double>::GridCompare>& OneDimLine::getLinearMap() const
+{
+	return line;
 }

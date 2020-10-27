@@ -114,12 +114,12 @@ namespace intp
 	template<class dType>
 	const dType& DimOneRange<dType>::left() const
 	{
-		return y0;
+		return yVal0;
 	}
 
 	template<class dType>
 	const dType& DimOneRange<dType>::right() const
 	{
-		return y1;
+		return yVal1;
 	}
 }

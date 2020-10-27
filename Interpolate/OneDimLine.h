@@ -43,7 +43,10 @@ namespace intp
         void addGridPair(const DimOneGrid<double>&, const DimOneRange<double>&);
 
         //Get the Grid and Value Pair that can be interpolated
-        void getPair(const double&, DimOneGrid<double>&, DimOneRange<double>&, bool) const;
+        const bool getPair(const double&, DimOneGrid<double>&, DimOneRange<double>&, bool) const;
+
+        //Get the map to analysis
+        const map<DimOneGrid<double>, DimOneRange<double>, DimOneGrid<double>::GridCompare>& getLinearMap() const;
 
     };
 }
